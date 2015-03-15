@@ -32,9 +32,11 @@ public class SimpleChronometer implements Chronometer {
 
     @Override
     public void start() {
-        currentTime = new GregorianCalendar();
-        format = new SimpleDateFormat("mm:ss");
-        currentTime.clear();
+        if (currentTime == null) {
+            currentTime = new GregorianCalendar();
+            format = new SimpleDateFormat("mm:ss");
+            currentTime.clear();
+        }
     }
 
     @Override

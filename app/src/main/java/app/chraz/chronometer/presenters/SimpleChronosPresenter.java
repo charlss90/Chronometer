@@ -16,7 +16,7 @@ public class SimpleChronosPresenter implements ChronosPresenter {
     @Override
     public void updateChronometer(int increment) {
         chronos.tic(increment);
-        chronosView.updateTime(chronos.getTime());
+//        chronosView.updateTime(chronos.getTime());
     }
 
     @Override

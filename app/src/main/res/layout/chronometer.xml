@@ -31,7 +31,13 @@
         <Button
             android:id="@+id/btn_start"
             android:layout_centerHorizontal="true"
-            android:text="Start"
+            android:text="@string/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_stop"
+            android:text="@string/stop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Chronometer.iml" filepath="$PROJECT_DIR$/Chronometer.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chronos.iml" filepath="$PROJECT_DIR$/chronos.iml" />
     </modules>
   </component>
 </project>
