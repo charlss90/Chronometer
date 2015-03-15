@@ -12,6 +12,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import app.chraz.chronometer.entities.Chronometer;
+import app.chraz.chronometer.entities.ChronosControl;
 import app.chraz.chronometer.models.SimpleChronometer;
 
 /**
@@ -24,9 +25,6 @@ public class ChronosServices extends Service {
     public static final int INCREMENT = 1;
     
     public static final String UPDATE_TIME = "Time";
-    public static final String PAUSE = "Pause";
-    public static final String STOP = "Stop";
-    public static final String PLAY = "Play";
 
     private Timer timer;
     private Intent notifyTic;
@@ -34,11 +32,7 @@ public class ChronosServices extends Service {
 
     public ChronosServices() {
         super();
-        timer = new Timer();
-        notifyTic = new Intent();
-        notifyTic.setAction(INTERVAL_UPDATE_ACTION);
-        chronos = new SimpleChronometer();
-        chronos.start();
+
     }
 
     TimerTask timerTask = new TimerTask() {
@@ -65,22 +59,21 @@ public class ChronosServices extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        intentFilter = new IntentFilter();
-        intentFilter.addAction(PAUSE);
-        intentFilter.addAction(PLAY);
-        intentFilter.addAction(STOP);
 
-        Log.d("Chronometer Activity", "OnCreate Services");
+        timer = new Timer();
 
-        registerReceiver(chronosServicesReciver, intentFilter);
+        notifyTic = new Intent();
+        notifyTic.setAction(INTERVAL_UPDATE_ACTION);
+
+        chronos = new SimpleChronometer();
+        chronos.start();
+
+        registerReceiver(chronosServicesReciver, ChronosFilter.getInstance());
     }
-
-    IntentFilter intentFilter;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         startTic();
-        Log.d("Chronometer Services", "OnStartCommand Services");
 
         return START_STICKY;
     }
@@ -109,18 +102,17 @@ public class ChronosServices extends Service {
 
     }
 
-
     public BroadcastReceiver chronosServicesReciver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
-                case PAUSE:
+                case ChronosControl.PAUSE:
                     cancel();
                     break;
-                case PLAY:
+                case ChronosControl.PLAY:
                     startTic();
                     break;
-                case STOP:
+                case ChronosControl.STOP:
                     stopSelf();
                     break;
             }

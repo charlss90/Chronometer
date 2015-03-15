@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import app.chraz.chronometer.entities.ChronosControl;
 import app.chraz.chronometer.services.ChronosServices;
 import app.chraz.chronometer.R;
 import app.chraz.chronometer.entities.ChronosPresenter;
@@ -123,7 +124,7 @@ public class ChronometerActivity extends ActionBarActivity implements ChronosVie
     public void pauseChronosService() {
         isRunning = false;
         Intent intent = new Intent();
-        intent.setAction(ChronosServices.PAUSE);
+        intent.setAction(ChronosControl.PAUSE);
         sendBroadcast(intent);
     }
 
